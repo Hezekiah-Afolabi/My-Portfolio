@@ -617,7 +617,7 @@ scopeToggle.addEventListener("click", () => {
 
 
 window.initPortfolio = function () {
-  setTheme(localStorage.getItem("theme") || "light");
+  setTheme(localStorage.getItem("theme") || "dark");
   setScopeMode(localStorage.getItem("scope") === "1");
   sections[0].classList.add("signal-arrived");
   sections[0].querySelectorAll(".animate-on-signal").forEach((el) => el.classList.add("visible"));
@@ -627,7 +627,12 @@ window.initPortfolio = function () {
   if (window.HeroThree) window.HeroThree.init();
   if (window.CardTilt) window.CardTilt.init();
   if (window.Dividers) window.Dividers.init();
-  if (window.FFTSkills) window.FFTSkills.init();
+  if (window.FFTSkills) {
+    window.FFTSkills.init();
+    if (activatedSections.has('skills')) {
+      window.FFTSkills.triggerEntrance(performance.now());
+    }
+  }
 
   resizeCanvases();
   updateScrollState();

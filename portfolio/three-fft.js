@@ -17,12 +17,13 @@
   var ENTRANCE_DURATION = 1200;
 
   var skills = [
-    { name: 'Programming', detail: 'Python, C++, Embedded C', proficiency: 0.92 },
-    { name: 'Embedded Linux', detail: 'Linux, SoC, systemctl', proficiency: 0.78 },
-    { name: 'Embedded Systems', detail: '8051, STM32, ESP8266', proficiency: 0.78 },
-    { name: 'Software & Tools', detail: 'Git, Linux, Claude Code', proficiency: 0.62 },
-    { name: 'Electronics & PCB', detail: 'KiCAD, Circuits, Multisim', proficiency: 0.92 },
-    { name: 'Web Dev', detail: 'HTML, CSS, JS, SQL', proficiency: 0.48 }
+    { name: 'Mech & Industrial', detail: 'System Design, Maintenance, Reliability', proficiency: 0.94 },
+    { name: 'Environmental Sci', detail: 'Climate, Watershed, Ecosystem', proficiency: 0.96 },
+    { name: 'Geospatial & Data', detail: 'ArcGIS, QGIS, Remote Sensing', proficiency: 0.85 },
+    { name: 'Safety & EHS', detail: 'OSHA, EPA, Risk Assessment', proficiency: 0.90 },
+    { name: 'Technical & Code', detail: 'Python, R, React, JavaScript', proficiency: 0.75 },
+    { name: 'Research & Analysis', detail: 'Field Research, Statistical Modeling', proficiency: 0.92 },
+    { name: 'Infrastructure', detail: 'Green Engineering, Water Resources', proficiency: 0.88 }
   ];
 
   var carrierColor = new THREE.Color(0x3b82d6);
@@ -135,6 +136,12 @@
 
     resize();
     active = true;
+
+    // Trigger entrance if container is already in viewport at init time
+    var initRect = containerEl.getBoundingClientRect();
+    if (initRect.top < window.innerHeight * 0.85) {
+      triggerEntrance(performance.now());
+    }
   }
 
   function createGlassMaterial(proficiency) {
